@@ -15,6 +15,9 @@ from secure_query.infrastructure.embeddings.openai_embeddings import EmbeddingSe
 from secure_query.application.use_cases.ingest_logs import IngestLogsUseCase
 from secure_query.application.use_cases.query_logs import QueryLogsUseCase
 
+# Ensure required directories exist (for HF Spaces compatibility)
+os.makedirs("/tmp/gradio", exist_ok=True)
+os.makedirs("./chroma_db", exist_ok=True)
 
 # Global state
 vector_store = None
