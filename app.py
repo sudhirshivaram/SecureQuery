@@ -100,8 +100,7 @@ def query_logs(message, history, api_key):
     global query_use_case
 
     if not uploaded_file_path:
-        history.append({"role": "user", "content": message})
-        history.append({"role": "assistant", "content": "⚠️ Please upload a log file first."})
+        history.append((message, "⚠️ Please upload a log file first."))
         return history
 
     if not message.strip():
@@ -114,8 +113,7 @@ def query_logs(message, history, api_key):
 
         # Check if LLM is available after initialization
         if query_use_case is None:
-            history.append({"role": "user", "content": message})
-            history.append({"role": "assistant", "content":
+            api_key_warning = (
                 "⚠️ **API Key Required for Querying**\n\n"
                 "Please provide a Gemini or OpenAI API key to ask questions.\n\n"
                 "**Get a FREE Gemini API key:**\n"
@@ -124,7 +122,8 @@ def query_logs(message, history, api_key):
                 "3. Paste it in the 'API Key' field above\n\n"
                 "Note: Sentence-transformers (free) is only for embeddings. "
                 "The LLM needs an API key to generate answers."
-            })
+            )
+            history.append((message, api_key_warning))
             return history
 
         # Query logs using RAG
@@ -133,13 +132,11 @@ def query_logs(message, history, api_key):
         # Format response
         response = result.to_markdown()
 
-        history.append({"role": "user", "content": message})
-        history.append({"role": "assistant", "content": response})
+        history.append((message, response))
         return history
 
     except Exception as e:
-        history.append({"role": "user", "content": message})
-        history.append({"role": "assistant", "content": f"❌ Error: {str(e)}"})
+        history.append((message, f"❌ Error: {str(e)}"))
         return history
 
 
