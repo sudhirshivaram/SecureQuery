@@ -1,0 +1,29 @@
+{
+  "Records": [
+    {
+      "eventTime": "2024-01-03T10:30:00Z",
+      "eventName": "ConsoleLogin",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "john.doe"
+      },
+      "sourceIPAddress": "203.0.113.42",
+      "responseElements": {
+        "ConsoleLogin": "Success"
+      }
+    },
+    {
+      "eventTime": "2024-01-03T10:35:00Z",
+      "eventName": "ConsoleLogin",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "admin"
+      },
+      "sourceIPAddress": "198.51.100.15",
+      "responseElements": {
+        "ConsoleLogin": "Failure"
+      },
+      "errorMessage": "Failed authentication"
+    }
+  ]
+}

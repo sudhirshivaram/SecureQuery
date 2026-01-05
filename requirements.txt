@@ -1,0 +1,7 @@
+gradio
+openai
+google-generativeai
+chromadb
+sentence-transformers
+pydantic
+python-dotenv
